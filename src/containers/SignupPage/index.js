@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import './styles.css';
 import SignUpForm from './SignUpForm';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -10,10 +9,10 @@ import { bindActionCreators } from 'redux';
 
 class SignupPage extends Component {
   render() {
-    const { classes,userSignUpRequest } = this.props;
+    const { userSignUpRequest } = this.props;
     return (
-      <div className={classes.background}>
-        <div className={classes.signup}>
+      <div className="background">
+        <div className="signup">
           <SignUpForm userSignUpRequest={userSignUpRequest} />
         </div>
       </div>
@@ -22,7 +21,6 @@ class SignupPage extends Component {
 }
 
 SignupPage.propTypes = {
-  classes: PropTypes.object,
   userSignUpRequest: PropTypes.func.isRequired,
 }
 
@@ -33,4 +31,4 @@ const mapDispatchToProps = (dispatch, Props) => {
 }
 const withConnect = connect(null, mapDispatchToProps);
 
-export default compose(withConnect, withStyles(styles))(SignupPage);
+export default compose(withConnect)(SignupPage);

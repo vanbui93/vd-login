@@ -1,160 +1,156 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import {
-  Button, Card,
-  CardContent,
-  Checkbox,
-  FormControlLabel,
-  TextField,
-  Typography
-} from '@material-ui/core';
-import styles from './styles';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import * as map_lodash from 'lodash/map';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import timezones from './../Data/timezones';
+import './styles.css';
 
-import validateInput from './../Validator/login';
-import classnames from 'classnames';
 
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      email:'',
-      password:'',
-      passwordConfirmation:'',
-      timezone:'',
-      chkbStatus: '',
-      errors: {},
+      user: {
+        username: '',
+        email: '',
+        password: '',
+        passwordConfirmation: '',
+        timezone: '',
+        chkbStatus: ''
+      },
+      submitted: false,
     }
-  }
-
-  isValid() {
-    const { errors, isValid } = validateInput(this.state);
-    if (!isValid) {
-      this.setState({ errors });
-    }
-    return isValid;
   }
 
   onChange = (e) => {
     var target = e.target;
     var name = target.name;
     var value = target.type === 'checkbox' ? target.checked : target.value;
+    const { user } = this.state;
     this.setState({
-      [name]: value
+      user: {
+        ...user,
+        [name]: value
+      }
     })
+    
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ errors: {} })
-    this.props.userSignUpRequest(this.state).then(
-      () => {},
-      ({data}) => this.setState({errors:data})
-    );
+    this.setState({ submitted: true });
+    const { user } = this.state;
+    if (user.username && user.email && user.password && user.passwordConfirmation && user.chkbStatus && user.timezone) {
+      this.props.userSignUpRequest(user);
+    }
   }
 
   render() {
-    const { classes } = this.props;
-    const { errors } = this.state;
-    const { username, email, password, passwordConfirmation, chkbStatus } = this.state;
-    const options = map_lodash(timezones,(val,key) => 
+    const { user, submitted } = this.state;
+    const options = map_lodash(timezones, (val, key) =>
       <option key={val} value={val}>{key}</option>
     );
     return (
-      <div>
-        <Card>
-            <CardContent>
-              <form onSubmit={this.handleSubmit}>
-                <Typography variant="h6" className={classes.title} color="textSecondary" gutterBottom>
-                  Đăng kí tài khoản
-                </Typography>
-                <div className={classnames('form-group', { 'has-error': errors.username })}>
-                  <TextField
-                    value={username}
-                    onChange={this.onChange}
-                    label="UserName"
-                    type="text"
-                    name="username"
-                    className={classes.textField}
-                    fullWidth
-                    margin="normal"
-                    errors={errors.username}
-                  />
-                  {errors.username && <span classnames="help-block">{errors.username}</span>}
-                </div>
-                <TextField
-                  value={email}
-                  onChange={this.onChange}
-                  label="Email"
-                  type="email"
-                  name="email"
-                  className={classes.textField}
-                  fullWidth
-                  margin="normal"
-                />
-                <TextField
-                  value={password}
-                  onChange={this.onChange}
-                  label="Password"
-                  type="password"
-                  name="password"
-                  className={classes.textField}
-                  fullWidth
-                  margin="normal"
-                />
-                <TextField
-                  value={passwordConfirmation}
-                  onChange={this.onChange}
-                  id="cpassword"
-                  name="passwordConfirmation"
-                  label="Password Confirmation"
-                  type="password"
-                  className={classes.textField}
-                  fullWidth
-                  margin="normal"
-                />
-                <select 
-                  className="form-control" 
+      <div className="card">
+        <form onSubmit={this.handleSubmit}>
+          <div className="card-body">
+            <h6>Đăng kí tài khoản</h6>
+            <div className="form-group">
+              <label htmlFor="Username">Username</label>
+              <input
+                value={user.username}
+                onChange={this.onChange}
+                type="text"
+                name="username"
+                className="form-control"
+              />
+              {submitted && ! user.username &&
+                <div className="help-block">UserName is required</div>
+              }
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                value={user.email}
+                onChange={this.onChange}
+                type="email"
+                name="email"
+                className="form-control"
+              />
+              {submitted && ! user.email &&
+                <div className="help-block">Email is required</div>
+              }
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                value={user.password}
+                onChange={this.onChange}
+                type="password"
+                name="password"
+                className="form-control"
+              />
+              {submitted && ! user.password &&
+                <div className="help-block">Password is required</div>
+              }
+            </div>
+            <div className="form-group">
+              <label htmlFor="passwordConfirmation">Password Confirmation</label>
+              <input
+                value={user.passwordConfirmation}
+                onChange={this.onChange}
+                type="password"
+                name="passwordConfirmation"
+                className="form-control"
+              />
+              {submitted && ! user.passwordConfirmation &&
+                <div className="help-block">Password is required</div>
+              }
+            </div>
+            <div className="form-group">
+                <select
+                  className="form-control"
                   name="timezone"
-                  onChange={ this.onChange}
+                  onChange={this.onChange}
                   defaultValue={1}
                 >
                   <option value="">Choose Your Timezone</option>
                   {options}
                 </select>
-                <FormControlLabel
-                  control={
-                  <Checkbox name="chkbStatus" defaultValue={chkbStatus} onChange={this.onChange}/>
-                } label="Tôi đã đọc và đồng ý điều khoản"
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  type="submit"
-                >
-                  Sign Up
-                </Button>
-                <div className="pt-1 text-md-center">
-                  <Link to="/login">
-                    <Button>Đăng nhập</Button>
-                  </Link>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+                {submitted && ! user.timezone &&
+                  <div className="help-block">Timezone is required</div>
+                }
+            </div>
+            <div className="col-auto my-1">
+              <div className="custom-control custom-checkbox mr-sm-2">
+                <input 
+                  type="checkbox" 
+                  className="custom-control-input" 
+                  name="chkbStatus" 
+                  id="chkbStatus"
+                  onChange={this.onChange}
+                  defaultChecked={user.chkbStatus}/>
+                <label className="custom-control-label" htmlFor="chkbStatus">Tôi đã đọc và đồng ý điều khoản</label>
+              </div>
+              {submitted && ! user.chkbStatus &&
+                  <div className="help-block">This field is required</div>
+                }
+            </div>
+            <div className="pt-1 text-md-center">
+              <div className="btn-block">
+                <button type="submit" className="btn btn-primary">Sign Up</button>
+              </div>
+              <Link to="/login">Đăng nhập</Link>
+            </div>
+          </div>
+        </form>
       </div>
     )
   }
 }
 
 SignUpForm.propsTypes = {
-  classes: PropTypes.object,
   userSignUpRequest: PropTypes.func.isRequired,
 }
 
-export default withStyles(styles)(SignUpForm);
+export default SignUpForm

@@ -4,7 +4,6 @@ import styles from './styles';
 import { Card, Typography, CardContent, TextField, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { a } from 'react-router-dom';
-import validateInput from './../Validator/login';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -15,14 +14,6 @@ class LoginPage extends Component {
       errors: {},
       isLoading: false,
     };
-  }
-
-  isValid = () => {
-    const {errors,isValid}= validateInput(this.state);
-    if(!isValid){
-      this.setState({errors});
-    }
-    return isValid;
   }
 
   onSubmit = (e) => {

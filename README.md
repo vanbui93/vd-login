@@ -21,7 +21,7 @@ npm install @material-ui/core
 
 Cài đặt **react-router-dom**
 
-```js
+```sh
 npm i react-router-dom
 ```
 

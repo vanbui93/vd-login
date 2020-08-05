@@ -2,19 +2,19 @@ import {
   Button, Card,
   CardContent,
   Checkbox,
-  FormControl, 
   FormControlLabel,
   TextField,
   Typography
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { axios } from 'axios';
 import * as map_lodash from 'lodash/map';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import timezones from './../Data/timezones';
 import styles from './styles';
+
+const axios = require('axios');
 
 class SignupPage extends Component {
   constructor(props) {
@@ -42,6 +42,7 @@ class SignupPage extends Component {
     axios.post('http://localhost:3000/api/users', {
       user:this.state
     });
+    console.log(this.state);
   }
 
 
@@ -56,7 +57,7 @@ class SignupPage extends Component {
         <div className={classes.signup}>
           <Card>
             <CardContent>
-              <FormControl onSubmit={this.onSubmit}>
+              <form onSubmit={this.onSubmit}>
                 <Typography variant="h6" className={classes.title} color="textSecondary" gutterBottom>
                   Đăng kí tài khoản
                 </Typography>
@@ -126,7 +127,7 @@ class SignupPage extends Component {
                     <Button>Đăng nhập</Button>
                   </Link>
                 </div>
-              </FormControl>
+              </form>
             </CardContent>
           </Card>
         </div>

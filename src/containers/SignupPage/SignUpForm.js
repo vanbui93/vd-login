@@ -14,6 +14,8 @@ import { Link } from 'react-router-dom';
 import * as map_lodash from 'lodash/map';
 import timezones from './../Data/timezones';
 
+import validateInput from './../Validator/login';
+import classnames from 'classnames';
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -24,8 +26,17 @@ class SignUpForm extends Component {
       password:'',
       passwordConfirmation:'',
       timezone:'',
-      chkbStatus: ''
+      chkbStatus: '',
+      errors: {},
     }
+  }
+
+  isValid() {
+    const { errors, isValid } = validateInput(this.state);
+    if (!isValid) {
+      this.setState({ errors });
+    }
+    return isValid;
   }
 
   onChange = (e) => {
@@ -39,14 +50,16 @@ class SignUpForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.setState({ errors: {} })
     this.props.userSignUpRequest(this.state).then(
       () => {},
-      ({data}) => this.setState({error:data})
+      ({data}) => this.setState({errors:data})
     );
   }
 
   render() {
     const { classes } = this.props;
+    const { errors } = this.state;
     const { username, email, password, passwordConfirmation, chkbStatus } = this.state;
     const options = map_lodash(timezones,(val,key) => 
       <option key={val} value={val}>{key}</option>
@@ -59,16 +72,20 @@ class SignUpForm extends Component {
                 <Typography variant="h6" className={classes.title} color="textSecondary" gutterBottom>
                   Đăng kí tài khoản
                 </Typography>
-                <TextField
-                  value={username}
-                  onChange={this.onChange}
-                  label="UserName"
-                  type="text"
-                  name="username"
-                  className={classes.textField}
-                  fullWidth
-                  margin="normal"
-                />
+                <div className={classnames('form-group', { 'has-error': errors.username })}>
+                  <TextField
+                    value={username}
+                    onChange={this.onChange}
+                    label="UserName"
+                    type="text"
+                    name="username"
+                    className={classes.textField}
+                    fullWidth
+                    margin="normal"
+                    errors={errors.username}
+                  />
+                  {errors.username && <span classnames="help-block">{errors.username}</span>}
+                </div>
                 <TextField
                   value={email}
                   onChange={this.onChange}

@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Login from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
-import HomePage from './containers/HomePage/index';
+import HomePage from './containers/HomePage';
 
 function App() {
   return (

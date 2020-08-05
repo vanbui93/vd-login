@@ -24,3 +24,9 @@ Cài đặt react-router-dom
 ```js
 npm i react-router-dom
 ```
+
+Cài đặt axios để kết nối với server
+
+```sh
+npm install axios --save
+```

@@ -1,9 +1,61 @@
 {
-	"users" : [
-		{
-			"id": 1,
-			"username": "vanbui",
-			"password": "123"
-		}
-	]
+  "users": [
+    {
+      "id": 1,
+      "username": "vanbui",
+      "password": "123"
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "passwordConfirmation": "",
+      "timezone": "Pacific/Honolulu",
+      "id": 2
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12345",
+      "passwordConfirmation": "12345",
+      "timezone": "Pacific/Niue",
+      "id": 3
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "passwordConfirmation": "",
+      "timezone": "Pacific/Pago_Pago",
+      "chkbStatus": "",
+      "id": 4
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "Pacific/Niue",
+      "chkbStatus": "",
+      "id": 5
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "Pacific/Niue",
+      "chkbStatus": "",
+      "id": 6
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "America/Dawson_Creek",
+      "chkbStatus": true,
+      "id": 7
+    }
+  ]
 }

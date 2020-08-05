@@ -24,13 +24,14 @@ class SignUpForm extends Component {
       password:'',
       passwordConfirmation:'',
       timezone:'',
+      chkbStatus: ''
     }
   }
 
   onChange = (e) => {
-    var name = e.target.name;
-    var value = e.target.value;
-
+    var target = e.target;
+    var name = target.name;
+    var value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value
     })
@@ -38,12 +39,15 @@ class SignUpForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.userSignUpRequest(this.state);
+    this.props.userSignUpRequest(this.state).then(
+      () => {},
+      ({data}) => this.setState({error:data})
+    );
   }
 
   render() {
     const { classes } = this.props;
-    const { username, email, password, passwordConfirmation } = this.state;
+    const { username, email, password, passwordConfirmation, chkbStatus } = this.state;
     const options = map_lodash(timezones,(val,key) => 
       <option key={val} value={val}>{key}</option>
     );
@@ -106,7 +110,9 @@ class SignUpForm extends Component {
                   {options}
                 </select>
                 <FormControlLabel
-                  control={<Checkbox value="agree" />} label="Tôi đã đọc và đồng ý điều khoản"
+                  control={
+                  <Checkbox name="chkbStatus" defaultValue={chkbStatus} onChange={this.onChange}/>
+                } label="Tôi đã đọc và đồng ý điều khoản"
                 />
                 <Button
                   variant="contained"

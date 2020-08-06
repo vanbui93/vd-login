@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import timezones from './../Data/timezones';
 import './styles.css';
-import { history } from './../../helpers/history'; 
 import { withRouter } from "react-router-dom";
 
 
@@ -23,7 +22,7 @@ class SignUpForm extends Component {
       submitted: false,
     }
   }
-  
+
   onChange = (e) => {
     var target = e.target;
     var name = target.name;
@@ -44,13 +43,7 @@ class SignUpForm extends Component {
     const { user } = this.state;
     
     // if (user.username && user.email && user.password && user.passwordConfirmation && user.chkbStatus && user.timezone) {
-      this.props.userSignUpRequest(user).then(
-        () => {
-          history.push('/');
-          
-        },
-        ({data})=> this.state({ errors:data})
-      );
+      this.props.userSignUpRequest(user);
     // }
   }
 

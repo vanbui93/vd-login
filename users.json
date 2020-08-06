@@ -404,6 +404,24 @@
       "timezone": "America/Edmonton",
       "chkbStatus": true,
       "id": 45
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "passwordConfirmation": "",
+      "timezone": "",
+      "chkbStatus": "",
+      "id": 46
+    },
+    {
+      "username": "hoya",
+      "email": "vancntt35b@gmail.com",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "America/Belize",
+      "chkbStatus": true,
+      "id": 47
     }
   ]
 }

@@ -13,7 +13,7 @@ class SignupPage extends Component {
     return (
       <div className="background">
         <div className="signup">
-          <SignUpForm userSignUpRequest={userSignUpRequest} />
+          <SignUpForm userSignUpRequest={userSignUpRequest}/>
         </div>
       </div>
     )

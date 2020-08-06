@@ -1,18 +1,23 @@
 import React from 'react';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
+  Redirect,
 } from "react-router-dom";
 import Login from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
 import HomePage from './containers/HomePage';
+import { history } from './helpers/history';
 
-function App() {
+class App extends React.Component {
+
+render() {
   return (
     <div className="App">
-      <Router>
+      <Router history={history}>
       <nav>
           <ul>
             <li>
@@ -27,13 +32,15 @@ function App() {
           </ul>
         </nav>
         <Switch>
-          <Route exact path="/"><HomePage/></Route>
-          <Route exact path="/login"><Login/></Route>
-          <Route exact path="/signup"><SignupPage/></Route>
+          <Route exact path="/" component={HomePage}></Route>
+          <Route exact path="/login" component={Login}></Route>
+          <Route exact path="/signup" component={SignupPage}></Route>
+          <Redirect from="*" to="/"/>
         </Switch>
       </Router>
     </div>
   );
+}
 }
 
 export default App;

@@ -10,12 +10,24 @@ import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
 import HomePage from './containers/HomePage';
 import { history } from './helpers/history';
+import { connect } from 'react-redux';
+import alertMessages from './reducers/alertMessages';
+
+var joinClasses = require('classnames');
+
 
 class App extends React.Component {
 
 render() {
+  const { alertMessage } = this.props;
+  console.log(alertMessage);
   return (
     <div className="App">
+      
+      {alertMessage.message &&
+        <div className={joinClasses('alert',{'alert-success': `${alertMessage.type}`})}>{alertMessage.message}</div>
+      }
+      
       <Router history={history}>
       <nav>
           <ul>
@@ -41,4 +53,9 @@ render() {
 }
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    alertMessage: state.alertMessages
+  }
+}
+export default connect(mapStateToProps, null)(App)

@@ -53,8 +53,13 @@ install history
 npm i history
 ```
 
-import shortid
+import shortid để render id tự động
 
 ```sh
 npm install shortid --save
+```
+
+cài đặt classname để có thể kết hợp class và logic, viết nhiều class dựa trên điều kiện
+```sh
+npm install classnames --save
 ```

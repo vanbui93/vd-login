@@ -52,3 +52,9 @@ install history
 ```sh
 npm i history
 ```
+
+import shortid
+
+```sh
+npm install shortid --save
+```

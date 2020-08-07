@@ -1,11 +1,21 @@
 import * as types from './../constant/alert';
 
-export default (state = [], action = {}) => {
+var initialState = {
+  type:'',
+  message: ''
+}
+
+const alertMessages = (state = initialState, action) => {
   switch (action.type) {
     case types.ALERT_MESSAGE: 
-    break;
+    return {
+      type: action.message.type,
+      message: action.message.message
+    }
 
     default:
-      break;
+      return state
   }
 }
+
+export default  alertMessages

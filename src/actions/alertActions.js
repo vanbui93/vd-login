@@ -1,4 +1,4 @@
-import * as types from './../../constant/alert';
+import * as types from './../constant/alert';
 
 export function alertMessages(message) {
     return {

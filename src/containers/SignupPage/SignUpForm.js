@@ -2,7 +2,7 @@ import * as map_lodash from 'lodash/map';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import timezones from './../Data/timezones';
+import timezones from './../../Data/timezones';
 import './styles.css';
 import { withRouter } from "react-router-dom";
 
@@ -44,12 +44,10 @@ class SignUpForm extends Component {
     if (user.username && user.email && user.password && user.passwordConfirmation && user.chkbStatus && user.timezone) {
       this.props.userSignUpRequest(user).then(
         () => {
-          this.props.alertMessages(
-            this.props.alertMessages({
-              type:'success',
-              message: 'You signed up successfully. Welcome'
-            })
-          )
+          this.props.alertMessages({
+            type:'success',
+            message: 'You signed up successfully. Welcome'
+          })
           history.push('/');
         }
       );
@@ -163,7 +161,7 @@ class SignUpForm extends Component {
 SignUpForm.propsTypes = {
   userSignUpRequest: PropTypes.func.isRequired,
   router: PropTypes.object.isRequired,
-  alertMessages: PropTypes.func,
+  alertMessages: PropTypes.func.isRequired,
 }
 
 export default withRouter(SignUpForm)

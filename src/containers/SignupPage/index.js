@@ -5,8 +5,8 @@ import SignUpForm from './SignUpForm';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { bindActionCreators } from 'redux';
-import { userSignUpRequest } from './../actions/signupActions';
-import { alertMessages } from './../actions/alertMessage';
+import { userSignUpRequest } from './../../actions/signupActions';
+import { alertMessages } from './../../actions/alertActions';
 
 class SignupPage extends Component {
   render() {

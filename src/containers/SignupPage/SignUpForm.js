@@ -7,7 +7,6 @@ import './styles.css';
 import { withRouter } from "react-router-dom";
 
 
-
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
@@ -45,6 +44,7 @@ class SignUpForm extends Component {
     if (user.username && user.email && user.password && user.passwordConfirmation && user.chkbStatus && user.timezone) {
       this.props.userSignUpRequest(user).then(
         () => {
+          this.props.alertMessages('You signed up successfully. Welcome')
           history.push('/');
         }
       );
@@ -157,7 +157,8 @@ class SignUpForm extends Component {
 
 SignUpForm.propsTypes = {
   userSignUpRequest: PropTypes.func.isRequired,
-  router: PropTypes.object.isRequired
+  router: PropTypes.object.isRequired,
+  alertMessages: PropTypes.func.isRequired,
 }
 
 export default withRouter(SignUpForm)

@@ -7,6 +7,7 @@ import './styles.css';
 import { withRouter } from "react-router-dom";
 
 
+
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
@@ -34,17 +35,20 @@ class SignUpForm extends Component {
         [name]: value
       }
     })
-    
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ submitted: true });
     const { user } = this.state;
-    
-    // if (user.username && user.email && user.password && user.passwordConfirmation && user.chkbStatus && user.timezone) {
-      this.props.userSignUpRequest(user);
-    // }
+    const {history} = this.props;
+    if (user.username && user.email && user.password && user.passwordConfirmation && user.chkbStatus && user.timezone) {
+      this.props.userSignUpRequest(user).then(
+        () => {
+          history.push('/');
+        }
+      );
+    }
   }
 
   render() {
@@ -153,6 +157,7 @@ class SignUpForm extends Component {
 
 SignUpForm.propsTypes = {
   userSignUpRequest: PropTypes.func.isRequired,
+  router: PropTypes.object.isRequired
 }
 
 export default withRouter(SignUpForm)

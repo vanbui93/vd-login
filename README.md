@@ -2,13 +2,13 @@
 
 **Lodash** là một thư viện JavaScript mạnh mẽ dùng để xử lý Array, Object, Function, Collection ..v.v <br>
 
-```js
+```sh
 npm i --save lodash
 ```
 
 Cài đặt material-ui
 
-```js
+```sh
 npm install @material-ui/core
 ```
 

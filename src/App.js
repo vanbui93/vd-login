@@ -5,9 +5,8 @@ import {
   Switch,
   Route,
   Link,
-  Redirect,
 } from "react-router-dom";
-import Login from './containers/LoginPage';
+import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
 import HomePage from './containers/HomePage';
 import { history } from './helpers/history';
@@ -33,9 +32,8 @@ render() {
         </nav>
         <Switch>
           <Route exact path="/" component={HomePage}></Route>
-          <Route exact path="/login" component={Login}></Route>
+          <Route exact path="/login" component={LoginPage}></Route>
           <Route exact path="/signup" component={SignupPage}></Route>
-          <Redirect from="*" to="/"/>
         </Switch>
       </Router>
     </div>

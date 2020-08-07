@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import { Card, Typography, CardContent, TextField, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { a } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -78,9 +78,9 @@ class LoginPage extends Component {
                     Login
                   </Button>
                   <div className="pt-1 text-md-center">
-                    <a href="/signup">
+                    <Link to="/signup">
                       <Button>Đăng kí tài khoản</Button>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </form>

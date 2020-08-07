@@ -1,31 +1,13 @@
 {
   "users": [
     {
-      "username": "hoya",
-      "email": "van.bt@trans-cosmos.com.vn",
-      "password": "12",
-      "passwordConfirmation": "12",
-      "timezone": "America/Edmonton",
+      "username": "test",
+      "email": "van.bt.38@gmail.com",
+      "password": "12345",
+      "passwordConfirmation": "12345",
+      "timezone": "America/Hermosillo",
       "chkbStatus": true,
       "id": 1
-    },
-    {
-      "username": "hoya",
-      "email": "van.bt@trans-cosmos.com.vn",
-      "password": "12",
-      "passwordConfirmation": "12",
-      "timezone": "America/Mazatlan",
-      "chkbStatus": true,
-      "id": 2
-    },
-    {
-      "username": "54",
-      "email": "van.bt@trans-cosmos.com.vn",
-      "password": "54",
-      "passwordConfirmation": "54",
-      "timezone": "America/Phoenix",
-      "chkbStatus": true,
-      "id": 3
     }
   ]
 }

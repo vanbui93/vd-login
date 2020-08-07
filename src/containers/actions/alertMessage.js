@@ -1,19 +1,8 @@
-import { alertConstants } from '../../constant/alert';
+import * as types from './../../constant/alert';
 
-export const alertMessages = {
-    success,
-    error,
-    clear
-};
-
-function success(message) {
-    return { type: alertConstants.SUCCESS, message };
-}
-
-function error(message) {
-    return { type: alertConstants.ERROR, message };
-}
-
-function clear() {
-    return { type: alertConstants.CLEAR };
+export function alertMessages(message) {
+    return {
+        type: types.ALERT_MESSAGE,
+        message
+    }
 }

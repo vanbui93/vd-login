@@ -44,7 +44,12 @@ class SignUpForm extends Component {
     if (user.username && user.email && user.password && user.passwordConfirmation && user.chkbStatus && user.timezone) {
       this.props.userSignUpRequest(user).then(
         () => {
-          this.props.alertMessages('You signed up successfully. Welcome')
+          this.props.alertMessages(
+            this.props.alertMessages({
+              type:'success',
+              message: 'You signed up successfully. Welcome'
+            })
+          )
           history.push('/');
         }
       );
@@ -158,7 +163,7 @@ class SignUpForm extends Component {
 SignUpForm.propsTypes = {
   userSignUpRequest: PropTypes.func.isRequired,
   router: PropTypes.object.isRequired,
-  alertMessages: PropTypes.func.isRequired,
+  alertMessages: PropTypes.func,
 }
 
 export default withRouter(SignUpForm)

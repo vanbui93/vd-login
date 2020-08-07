@@ -1,5 +1,11 @@
-const alertMessages = (state = [], action = {}) => {
-  return state;
-}
+import * as types from './../constant/alert';
 
-export default alertMessages;
+export default (state = [], action = {}) => {
+  switch (action.type) {
+    case types.ALERT_MESSAGE: 
+    break;
+
+    default:
+      break;
+  }
+}

@@ -8,6 +8,24 @@
       "timezone": "America/Edmonton",
       "chkbStatus": true,
       "id": 1
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "America/Mazatlan",
+      "chkbStatus": true,
+      "id": 2
+    },
+    {
+      "username": "54",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "54",
+      "passwordConfirmation": "54",
+      "timezone": "America/Phoenix",
+      "chkbStatus": true,
+      "id": 3
     }
   ]
 }

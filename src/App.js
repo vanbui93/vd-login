@@ -8,6 +8,7 @@ import {
 import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
 import HomePage from './containers/HomePage';
+import NewEventPage from './containers/events/NewEventPage';
 import { history } from './helpers/history';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
@@ -38,6 +39,7 @@ class App extends React.Component {
             <Route exact path="/" component={HomePage}></Route>
             <Route exact path="/login" component={LoginPage}></Route>
             <Route exact path="/signup" component={SignupPage}></Route>
+            <Route exact path="/new-event" component={NewEventPage}></Route>
           </Switch>
         </Router>
       </div>

@@ -18,6 +18,13 @@ class NavigationBar extends Component {
         //userLinks cho user đã Authenticated (đã login)
         const userLinks = (
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+                
+                <li className="nav-item">
+                    <NavLink exact className="nav-link" activeClassName="active" to="/">Home</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink exact className="nav-link" to="/new-event">Add New Event</NavLink>
+                </li>
                 <li className="nav-item">
                     <a href="/" className="nav-link" onClick={this.logout}>Logout</a>
                 </li>
@@ -27,9 +34,6 @@ class NavigationBar extends Component {
         //guestLinks cho user chưa login
         const guestLinks = (
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li className="nav-item">
-                    <NavLink exact className="nav-link" activeClassName="active" to="/">Home</NavLink>
-                </li>
                 <li className="nav-item">
                     <NavLink exact className="nav-link" to="/login">Đăng nhập</NavLink>
                 </li>

@@ -1,91 +1,91 @@
-import React, { Component } from 'react'
-import { withStyles } from '@material-ui/core/styles';
-import styles from './styles';
-import { Card, Typography, CardContent, TextField, Button } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './styles.css';
+import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux';
+import { userLoginRequest } from './../../actions/loginActions';
 
 class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      identifier: '',
-      password:'',
-      errors: {},
+      user: {
+        identifier: '',
+        password:'',
+      },
       isLoading: false,
+      submitted: false,
     };
   }
 
-  onSubmit = (e) => {
-    e.preventDefault();
-    if(this.isValid()){
-
-    }
-  }
-
-  onChange = (e) => {
-    var event = e.target;
-    var name = event.name;
-    var value = event.value;
+  handleChange = (e) => {
+    var target = e.target;
+    var name = target.name;
+    var value = target.value;
+    const { user } = this.state;
     this.setState({
-      [name]: value
+      user: {
+        ...user,
+        [name]: value
+      }
     });
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ submitted: true, isLoading: true });
+    this.props.userLoginRequest(this.state)
+  }
+
   render() {
-    const { classes } = this.props;
-    const { errors, identifier, password, isLoading } = this.state;
+    const { submitted, user, isLoading } = this.state;
     return (
-      <div className={classes.background}>
-        <div className={classes.login}>
-          <Card>
-            <CardContent>
-              <form onSubmit={this.onSubmit}>
-                <div className="text-xs-center pb-xs">
-                  <Typography variant="h6" className={classes.title} color="textSecondary" gutterBottom>
-                   Đăng nhập để tiếp tục
-                  </Typography>
-                  <TextField
-                    field="identifier"
-                    label="Username/Email"
-                    value={identifier}
-                    error={errors.identifier}
-                    onChange={this.onChange}
-
-                    className={classes.textField}
-                    fullWidth
-                    margin="normal"
-                  />
-                  <TextField
-                    field="identifier"
-                    label="Password"
-                    value={password}
-                    error={errors.password}
-                    onChange={this.onChange}
-
-                    className={classes.textField}
-                    fullWidth
-                    type="password"
-                    margin="normal"
-                  />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    type="submit"
-                    disabled={isLoading}
-                  >
-                    Login
-                  </Button>
+      <div className="background">
+        <div className="login">
+            <div className="card">
+              <form onSubmit={this.handleSubmit}>
+                <div className="card-body text-xs-center pb-xs">
+                  <h6>Đăng nhập để tiếp tục</h6>
+                  <div className="form-group">
+                    <label htmlFor="identifier">Username</label>
+                    <input
+                      value={user.identifier}
+                      onChange={this.handleChange}
+                      type="text"
+                      name="identifier"
+                      className="form-control"
+                    />
+                    {submitted && ! user.identifier &&
+                      <div className="help-block">UserName is required</div>
+                    }
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      value={user.password}
+                      onChange={this.handleChange}
+                      type="text"
+                      name="password"
+                      className="form-control"
+                    />
+                    {submitted && ! user.password &&
+                      <div className="help-block">Password is required</div>
+                    }
+                  </div>
                   <div className="pt-1 text-md-center">
-                    <Link to="/signup">
-                      <Button>Đăng kí tài khoản</Button>
-                    </Link>
+                    <div className="btn-block">
+                      <button type="submit" className="btn btn-primary" disabled={isLoading}>Đăng nhập</button>
+                    </div>
+                  </div>
+                  <div className="pt-1 text-md-center">
+                    <div className="btn-block">
+                      <Link to="/signup">Đăng kí tài khoản</Link>
+                    </div>
                   </div>
                 </div>
               </form>
-            </CardContent>
-          </Card>
+            </div>
         </div>
       </div>
     )
@@ -93,7 +93,13 @@ class LoginPage extends Component {
 }
 
 LoginPage.propTypes={
-  classes:PropTypes.object,
+  userLoginRequest:PropTypes.func.isRequired,
 }
 
-export default withStyles(styles)(LoginPage);
+const mapDispatchToProps = (dispatch, Props) => {
+  return {
+      userLoginRequest:bindActionCreators(userLoginRequest, dispatch)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(LoginPage);

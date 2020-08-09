@@ -63,3 +63,8 @@ cài đặt classname để có thể kết hợp class và logic, viết nhiề
 ```sh
 npm install classnames --save
 ```
+
+cài đặt bcrypt để mã hóa mật khẩu
+```sh
+npm i bcrypt
+```

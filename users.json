@@ -152,6 +152,69 @@
       "timezone": "America/Vancouver",
       "chkbStatus": true,
       "id": 17
+    },
+    {
+      "username": "vanbui",
+      "email": "van.bt.38@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "America/Whitehorse",
+      "chkbStatus": true,
+      "id": 18
+    },
+    {
+      "username": "van",
+      "email": "van.bt.38@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "Pacific/Niue",
+      "chkbStatus": true,
+      "id": 19
+    },
+    {
+      "username": "van",
+      "email": "van.bt.38@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "Pacific/Pago_Pago",
+      "chkbStatus": true,
+      "id": 20
+    },
+    {
+      "username": "van",
+      "email": "van.bt.38@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "Pacific/Niue",
+      "chkbStatus": true,
+      "id": 21
+    },
+    {
+      "username": "van",
+      "email": "vancntt35b@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "Pacific/Pago_Pago",
+      "chkbStatus": true,
+      "id": 22
+    },
+    {
+      "username": "van",
+      "email": "van.bt.38@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "Pacific/Niue",
+      "chkbStatus": true,
+      "id": 23
+    },
+    {
+      "username": "van",
+      "email": "van.bt.38@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "Pacific/Rarotonga",
+      "chkbStatus": true,
+      "id": 24
     }
   ]
 }

@@ -142,8 +142,8 @@ class SignUpForm extends Component {
                 <label className="custom-control-label" htmlFor="chkbStatus">Tôi đã đọc và đồng ý điều khoản</label>
               </div>
               {submitted && ! user.chkbStatus &&
-                  <div className="help-block">This field is required</div>
-                }
+                <div className="help-block">This field is required</div>
+              }
             </div>
             <div className="pt-1 text-md-center">
               <div className="btn-block">

@@ -11,7 +11,7 @@ import SignupPage from './containers/SignupPage';
 import HomePage from './containers/HomePage';
 import { history } from './helpers/history';
 import { connect } from 'react-redux';
-import alertMessages from './reducers/alertMessages';
+import { PropTypes } from 'prop-types';
 
 var joinClasses = require('classnames');
 
@@ -20,12 +20,16 @@ class App extends React.Component {
 
 render() {
   const { alertMessage } = this.props;
-  console.log(alertMessage);
   return (
     <div className="App">
       
       {alertMessage.message &&
-        <div className={joinClasses('alert',{'alert-success': `${alertMessage.type}`})}>{alertMessage.message}</div>
+        <div className={joinClasses('alert',{'alert-success': `${alertMessage.type}`})}>
+          {alertMessage.message}
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       }
       
       <Router history={history}>
@@ -51,6 +55,10 @@ render() {
     </div>
   );
 }
+}
+
+App.propTypes = {
+  alertMessage: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {

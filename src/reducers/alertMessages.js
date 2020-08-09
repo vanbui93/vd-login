@@ -11,7 +11,7 @@ const alertMessages = (state = initialState, action) => {
   switch (action.type) {
     case types.ALERT_MESSAGE: 
     return {
-      id: shortid,
+      id: shortid.generate(),
       type: action.message.type,
       message: action.message.message
     }

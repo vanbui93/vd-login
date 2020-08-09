@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { logoutActions } from './../actions/authActions'
+import { bindActionCreators } from 'redux';
 
 class NavigationBar extends Component {
+
+    logout = (e) => {
+        e.preventDefault();
+        this.props.logoutActions();
+    }
+
     render() {
         const { isAuthenticated } = this.props.auth;
 
@@ -11,7 +19,7 @@ class NavigationBar extends Component {
         const userLinks = (
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li className="nav-item">
-                    <NavLink exact className="nav-link" to="/logout">Logout</NavLink>
+                    <a href="/" className="nav-link" onClick={this.logout}>Logout</a>
                 </li>
             </ul>
         );
@@ -43,6 +51,7 @@ class NavigationBar extends Component {
 
 NavigationBar.propTypes = {
     auth: PropTypes.object.isRequired,
+    logoutActions: PropTypes.func.isRequired,
 }
 
 
@@ -52,4 +61,10 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, null)(NavigationBar)
+const mapDispatchToProps = (dispatch, Props) => {
+    return {
+        logoutActions: bindActionCreators(logoutActions, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar)

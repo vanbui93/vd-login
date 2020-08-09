@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux';
-import { userLoginRequest } from './../../actions/loginActions';
+import { userLoginRequest } from '../../actions/authActions';
 
 class LoginPage extends Component {
   constructor(props) {

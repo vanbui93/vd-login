@@ -11,7 +11,7 @@ class LoginPage extends Component {
     super(props);
     this.state = {
       user: {
-        identifier: '',
+        username: '',
         password:'',
       },
       isLoading: false,
@@ -35,15 +35,16 @@ class LoginPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ submitted: true, isLoading: true });
-
-    this.setState({ isLoading: true })
-
+    
     const {history} = this.props;
-
-    this.props.userLoginRequest(this.state).then(
-      (res) => {  history.push('/')},
-      (err) => this.setState({isLoading: false})
-    ) 
+    
+    const { user } = this.state;
+    if (user.username && user.password){
+      this.props.userLoginRequest(this.state).then(
+        (res) => {  history.push('/')},
+        (err) => this.setState({isLoading: false})
+      ) 
+    }
   }
 
   render() {
@@ -56,15 +57,15 @@ class LoginPage extends Component {
                 <div className="card-body text-xs-center pb-xs">
                   <h6>Đăng nhập để tiếp tục</h6>
                   <div className="form-group">
-                    <label htmlFor="identifier">Username</label>
+                    <label htmlFor="username">Username</label>
                     <input
-                      value={user.identifier}
+                      value={user.username}
                       onChange={this.handleChange}
                       type="text"
-                      name="identifier"
+                      name="username"
                       className="form-control"
                     />
-                    {submitted && ! user.identifier &&
+                    {submitted && ! user.username &&
                       <div className="help-block">UserName is required</div>
                     }
                   </div>

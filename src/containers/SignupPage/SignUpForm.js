@@ -20,6 +20,7 @@ class SignUpForm extends Component {
         chkbStatus: ''
       },
       submitted: false,
+      isLoading: false,
     }
   }
 
@@ -38,7 +39,7 @@ class SignUpForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ submitted: true });
+    this.setState({ submitted: true, isLoading: true });
     const { user } = this.state;
     const {history} = this.props;
     if (user.username && user.email && user.password && user.passwordConfirmation && user.chkbStatus && user.timezone) {
@@ -49,13 +50,14 @@ class SignUpForm extends Component {
             message: 'You signed up successfully. Welcome'
           })
           history.push('/');
-        }
+        },
+        (err) => this.setState({isLoading: false})
       );
     }
   }
 
   render() {
-    const { user, submitted } = this.state;
+    const { user, submitted,isLoading } = this.state;
     const options = map_lodash(timezones, (val, key) =>
       <option key={val} value={val}>{key}</option>
     );
@@ -147,7 +149,7 @@ class SignUpForm extends Component {
             </div>
             <div className="pt-1 text-md-center">
               <div className="btn-block">
-                <button type="submit" className="btn btn-primary">Sign Up</button>
+                <button type="submit" className="btn btn-primary" disabled={isLoading}>Sign Up</button>
               </div>
               <Link to="/login">Đăng nhập</Link>
             </div>

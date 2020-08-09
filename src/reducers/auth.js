@@ -9,7 +9,7 @@ const auth = (state = initialState, action) => {
     switch (action.type) {
         case Types.SET_CURRENT_USER:
             return {
-                isAuthenticated: isEmpty(action.user),
+                isAuthenticated: !isEmpty(action.user),
                 user: action.user
             };
     

@@ -35,7 +35,15 @@ class LoginPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ submitted: true, isLoading: true });
-    this.props.userLoginRequest(this.state)
+
+    this.setState({ isLoading: true })
+
+    const {history} = this.props;
+
+    this.props.userLoginRequest(this.state).then(
+      (res) => {  history.push('/')},
+      (err) => this.setState({isLoading: false})
+    ) 
   }
 
   render() {

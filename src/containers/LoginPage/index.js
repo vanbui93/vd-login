@@ -74,7 +74,7 @@ class LoginPage extends Component {
                     <input
                       value={user.password}
                       onChange={this.handleChange}
-                      type="text"
+                      type="password"
                       name="password"
                       className="form-control"
                     />

@@ -68,3 +68,9 @@ cài đặt bcrypt để mã hóa mật khẩu
 ```sh
 npm i bcrypt
 ```
+
+cài đặt jwt-decode để mã hóa code
+
+```sh
+npm i jwt-decode --save
+```

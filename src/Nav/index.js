@@ -18,7 +18,6 @@ class NavigationBar extends Component {
         //userLinks cho user đã Authenticated (đã login)
         const userLinks = (
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                
                 <li className="nav-item">
                     <NavLink exact className="nav-link" activeClassName="active" to="/">Home</NavLink>
                 </li>

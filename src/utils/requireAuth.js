@@ -13,7 +13,7 @@ export default function (ComposedComponent) {
           type:'alert-danger',
           message: 'You need to login to access this page'
         });
-        history.push('/');
+        history.push('/login');
       };
     };
 

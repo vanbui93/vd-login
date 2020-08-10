@@ -7,14 +7,13 @@ import {
 } from "react-router-dom";
 import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
-// import HomePage from './containers/HomePage';
+import HomePage from './containers/HomePage';
 import NewEventPage from './containers/events/NewEventPage';
 import { history } from './helpers/history';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import NavigationBar from './Nav';
 import requireAuth from './utils/requireAuth';
-import { alertActions } from './actions/alertActions';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +21,7 @@ class App extends React.Component {
 
     history.listen((location, action) => {
       // clear alert on location change
-      this.props.clearAlerts();
+      this.props.alertMessage();
     });
   }
 
@@ -43,7 +42,7 @@ class App extends React.Component {
         <Router history={history}>
           <NavigationBar />
           <Switch>
-            {/* <Route exact path="/" component={HomePage}></Route> */}
+            <Route exact path="/" component={HomePage}></Route>
             <Route exact path="/login" component={LoginPage}></Route>
             <Route exact path="/signup" component={SignupPage}></Route>
             <Route exact path="/new-event" component={requireAuth(NewEventPage)}></Route>
@@ -56,7 +55,6 @@ class App extends React.Component {
 
 App.propTypes = {
   alertMessage: PropTypes.object.isRequired,
-  clearAlerts: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -65,8 +63,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const actionCreators = {
-  clearAlerts: alertActions.alertClear
-};
 
-export default connect(mapStateToProps, actionCreators)(App)
+export default connect(mapStateToProps)(App)

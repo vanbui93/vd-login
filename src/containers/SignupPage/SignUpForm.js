@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import timezones from './../../Data/timezones';
 import './styles.css';
 import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { alertActions } from '../../actions/alertActions';
+import { compose } from 'redux';
 
 
 class SignUpForm extends Component {
@@ -23,6 +26,19 @@ class SignUpForm extends Component {
       isLoading: false,
     }
   }
+
+  //kiểm tra nếu đã logined thì trả về trang chủ thông báo bạn đang login, để đăng kí tài khoản mới xin hãy logout trước
+  componentDidMount() {
+    if(this.props.isAuthenticated) {
+      console.log(this.props.isAuthenticated);
+      const {history} = this.props;
+      this.props.alertError({
+        type:'alert-danger',
+        message: 'Bạn đã logined, xin hãy Logout trước khi muốn tạo tài khoản mới'
+      });
+      history.push('/');
+    };
+  };
 
   onChange = (e) => {
     var target = e.target;
@@ -164,6 +180,21 @@ SignUpForm.propsTypes = {
   userSignUpRequest: PropTypes.func.isRequired,
   router: PropTypes.object.isRequired,
   alertSuccess: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 }
 
-export default withRouter(SignUpForm)
+const mapStateToProps = (state, Props) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  }
+}
+const actionCreators = {
+  alertError: alertActions.alertError
+};
+
+const withConnect = connect(
+  mapStateToProps,
+  actionCreators,
+);
+
+export default compose(withConnect)(withRouter(SignUpForm));

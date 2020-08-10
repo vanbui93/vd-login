@@ -5,6 +5,7 @@ import './styles.css';
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux';
 import { userLoginRequest } from '../../actions/authActions';
+import { alertActions } from '../../actions/alertActions';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -18,6 +19,19 @@ class LoginPage extends Component {
       submitted: false,
     };
   }
+
+  //kiểm tra nếu đã logined rồi thì trả về trang chủ, thông báo đã có tài khoản
+  componentDidMount() {
+    if(this.props.isAuthenticated) {
+      const {history} = this.props;
+      this.props.alertError({
+        type:'alert-danger',
+        message: 'Bạn đã có tài khoản và đã đang nhập rồi !'
+      });
+      history.push('/');
+    };
+  };
+
 
   handleChange = (e) => {
     var target = e.target;
@@ -103,12 +117,21 @@ class LoginPage extends Component {
 
 LoginPage.propTypes={
   userLoginRequest:PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  alertError: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = (state, Props) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  }
 }
 
 const mapDispatchToProps = (dispatch, Props) => {
   return {
-      userLoginRequest:bindActionCreators(userLoginRequest, dispatch)
+      userLoginRequest:bindActionCreators(userLoginRequest, dispatch),
+      alertError:bindActionCreators(alertActions.alertError, dispatch),
     }
 }
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

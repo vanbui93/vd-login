@@ -27,14 +27,14 @@ class SignUpForm extends Component {
     }
   }
 
-  //kiểm tra nếu đã logined thì trả về trang chủ thông báo bạn đang login, để đăng kí tài khoản mới xin hãy logout trước
+  //kiểm tra nếu đã loggned thì trả về trang chủ thông báo bạn đang login, để đăng kí tài khoản mới xin hãy logout trước
   componentDidMount() {
     if(this.props.isAuthenticated) {
       console.log(this.props.isAuthenticated);
       const {history} = this.props;
       this.props.alertError({
         type:'alert-danger',
-        message: 'Bạn đã logined, xin hãy Logout trước khi muốn tạo tài khoản mới'
+        message: 'Bạn đã loggned, xin hãy Logout trước khi muốn tạo tài khoản mới'
       });
       history.push('/');
     };

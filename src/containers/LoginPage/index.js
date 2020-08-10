@@ -20,7 +20,7 @@ class LoginPage extends Component {
     };
   }
 
-  //kiểm tra nếu đã logined rồi thì trả về trang chủ, thông báo đã có tài khoản
+  //kiểm tra nếu đã loggned rồi thì trả về trang chủ, thông báo đã có tài khoản
   componentDidMount() {
     if(this.props.isAuthenticated) {
       const {history} = this.props;

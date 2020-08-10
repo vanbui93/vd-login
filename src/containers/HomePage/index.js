@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class HomePage extends Component {
 
-  //kiểm tra nếu người dùng chưa đăng nhập, điều hướng người dùng đến trang /login
+  //kiểm tra nếu người dùng chưa đăng nhập loggin, điều hướng người dùng đến trang /login
   componentDidMount() {
     if (!this.props.isAuthenticated) {
       const { history } = this.props;

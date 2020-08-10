@@ -6,15 +6,15 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { bindActionCreators } from 'redux';
 import { userSignUpRequest } from './../../actions/signupActions';
-import { alertMessages } from './../../actions/alertActions';
+import { alertActions } from './../../actions/alertActions';
 
 class SignupPage extends Component {
   render() {
-    const { userSignUpRequest, alertMessages } = this.props;
+    const { userSignUpRequest, alertSuccess } = this.props;
     return (
       <div className="background">
         <div className="signup">
-          <SignUpForm userSignUpRequest={userSignUpRequest} alertMessages={alertMessages}/>
+          <SignUpForm userSignUpRequest={userSignUpRequest} alertSuccess={alertSuccess}/>
         </div>
       </div>
     )
@@ -23,15 +23,16 @@ class SignupPage extends Component {
 
 SignupPage.propTypes = {
   userSignUpRequest: PropTypes.func.isRequired,
-  alertMessages: PropTypes.func.isRequired,
+  alertSuccess: PropTypes.func.isRequired,
 }
 
 const mapDispatchToProps = (dispatch, Props) => {
   return {
     userSignUpRequest: bindActionCreators(userSignUpRequest, dispatch),
-    alertMessages: bindActionCreators(alertMessages, dispatch),
+    alertSuccess: bindActionCreators(alertActions.alertSuccess, dispatch),
   }
 }
+
 const withConnect = connect(null, mapDispatchToProps);
 
 export default compose(withConnect)(SignupPage);

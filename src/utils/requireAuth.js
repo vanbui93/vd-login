@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { alertMessages } from './../actions/alertActions';
+import { alertActions } from './../actions/alertActions';
 
 export default function (ComposedComponent) {
   class requireAuth extends Component {
@@ -10,13 +9,21 @@ export default function (ComposedComponent) {
     componentDidMount() {
       if(!this.props.isAuthenticated) {
         const {history} = this.props;
-        this.props.alertMessages({
-          type: 'error',
+        this.props.alertError({
+          type:'alert-danger',
           message: 'You need to login to access this page'
         });
         history.push('/');
       };
     };
+
+    componentWillUpdate(nextProps, nextState) {
+      const {history} = this.props;
+      if(!nextProps.isAuthenticated) {
+        history.push('/');
+      }
+    }
+    
 
     render() {
       return (
@@ -27,7 +34,7 @@ export default function (ComposedComponent) {
 
   requireAuth.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    alertMessages: PropTypes.func.isRequired,
+    alertError: PropTypes.func.isRequired,
   }
 
   const mapStateToProps = (state, Props) => {
@@ -36,11 +43,9 @@ export default function (ComposedComponent) {
     }
   }
 
-  const mapDispatchToProps = (dispatch, Props) => {
-    return {
-      alertMessages: bindActionCreators(alertMessages, dispatch)
-    }
-  }
+  const actionCreators = {
+    alertError: alertActions.alertError
+  };
 
-  return connect(mapStateToProps,mapDispatchToProps)(requireAuth);
+  return connect(mapStateToProps,actionCreators)(requireAuth);
 }

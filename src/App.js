@@ -4,30 +4,35 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from "react-router-dom";
 import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
-import HomePage from './containers/HomePage';
+// import HomePage from './containers/HomePage';
 import NewEventPage from './containers/events/NewEventPage';
 import { history } from './helpers/history';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import NavigationBar from './Nav';
 import requireAuth from './utils/requireAuth';
-
-var joinClasses = require('classnames');
-
+import { alertActions } from './actions/alertActions';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    history.listen((location, action) => {
+      // clear alert on location change
+      this.props.clearAlerts();
+    });
+  }
 
   render() {
-    const { alertMessage } = this.props;
+    const { alertMessage } = this.props; //lấy từ store reducer
     return (
       <div className="App">
 
         {alertMessage.message &&
-          <div className={joinClasses('alert', { 'alert-success': `${alertMessage.type}=='success`})}>
+          <div className={`alert ${alertMessage.type}`}>
             {alertMessage.message}
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -36,7 +41,7 @@ class App extends React.Component {
         }
 
         <Router history={history}>
-          <NavigationBar/>
+          <NavigationBar />
           <Switch>
             {/* <Route exact path="/" component={HomePage}></Route> */}
             <Route exact path="/login" component={LoginPage}></Route>
@@ -51,6 +56,7 @@ class App extends React.Component {
 
 App.propTypes = {
   alertMessage: PropTypes.object.isRequired,
+  clearAlerts: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -58,4 +64,9 @@ const mapStateToProps = (state, ownProps) => {
     alertMessage: state.alertMessages,
   }
 }
-export default connect(mapStateToProps, null)(App)
+
+const actionCreators = {
+  clearAlerts: alertActions.alertClear
+};
+
+export default connect(mapStateToProps, actionCreators)(App)

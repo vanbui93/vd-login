@@ -26,6 +26,96 @@
       "timezone": "Pacific/Honolulu",
       "chkbStatus": true,
       "id": 3
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "122",
+      "passwordConfirmation": "1212",
+      "timezone": "Pacific/Honolulu",
+      "chkbStatus": true,
+      "id": 4
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "Pacific/Honolulu",
+      "chkbStatus": true,
+      "id": 5
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "Pacific/Honolulu",
+      "chkbStatus": true,
+      "id": 6
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "Pacific/Pago_Pago",
+      "chkbStatus": true,
+      "id": 7
+    },
+    {
+      "username": "vanbui",
+      "email": "vancntt35b@gmail.com",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "Pacific/Pago_Pago",
+      "chkbStatus": true,
+      "id": 8
+    },
+    {
+      "username": "vanbui",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "Pacific/Rarotonga",
+      "chkbStatus": true,
+      "id": 9
+    },
+    {
+      "username": "vnbui",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "Pacific/Niue",
+      "chkbStatus": true,
+      "id": 10
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "23```",
+      "passwordConfirmation": "232323",
+      "timezone": "Pacific/Pago_Pago",
+      "chkbStatus": true,
+      "id": 11
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "434",
+      "passwordConfirmation": "43",
+      "timezone": "Pacific/Pago_Pago",
+      "chkbStatus": true,
+      "id": 12
+    },
+    {
+      "username": "vanbui",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12121",
+      "passwordConfirmation": "1212",
+      "timezone": "Pacific/Pago_Pago",
+      "chkbStatus": true,
+      "id": 13
     }
   ],
   "events": [
@@ -47,6 +137,11 @@
       "title": "test update",
       "isLoading": false,
       "id": 4
+    },
+    {
+      "title": "1212",
+      "isLoading": false,
+      "id": 5
     }
   ]
 }

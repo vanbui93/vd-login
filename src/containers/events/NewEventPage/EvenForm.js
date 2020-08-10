@@ -18,10 +18,20 @@ class EventForm extends React.Component {
     });
   }
 
+  reset =() => {
+    this.setState({
+      title:'',
+      isLoading: false,
+    })
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     this.setState({ isLoading: true })
     this.props.addNewEventAction(this.state);
+
+    //reset form
+    this.reset();
   }
 
   render() {

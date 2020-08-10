@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
@@ -13,6 +14,7 @@ import { history } from './helpers/history';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import NavigationBar from './Nav';
+import requireAuth from './utils/requireAuth';
 
 var joinClasses = require('classnames');
 
@@ -25,7 +27,7 @@ class App extends React.Component {
       <div className="App">
 
         {alertMessage.message &&
-          <div className={joinClasses('alert', { 'alert-success': `${alertMessage.type}` })}>
+          <div className={joinClasses('alert', { 'alert-success': `${alertMessage.type}=='success`})}>
             {alertMessage.message}
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -36,10 +38,10 @@ class App extends React.Component {
         <Router history={history}>
           <NavigationBar/>
           <Switch>
-            <Route exact path="/" component={HomePage}></Route>
+            {/* <Route exact path="/" component={HomePage}></Route> */}
             <Route exact path="/login" component={LoginPage}></Route>
             <Route exact path="/signup" component={SignupPage}></Route>
-            <Route exact path="/new-event" component={NewEventPage}></Route>
+            <Route exact path="/new-event" component={requireAuth(NewEventPage)}></Route>
           </Switch>
         </Router>
       </div>

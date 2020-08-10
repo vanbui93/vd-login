@@ -17,6 +17,15 @@
       "timezone": "America/Anchorage",
       "chkbStatus": true,
       "id": 2
+    },
+    {
+      "username": "hoya",
+      "email": "bubt@trans-cosmos.co.jp",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "timezone": "Pacific/Honolulu",
+      "chkbStatus": true,
+      "id": 3
     }
   ],
   "events": [

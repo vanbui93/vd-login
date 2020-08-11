@@ -1,0 +1,66 @@
+{
+  "users": [
+    {
+      "username": "vanbui",
+      "email": "van.bt.38@gmail.com",
+      "password": "123456",
+      "passwordConfirmation": "123456",
+      "timezone": "Pacific/Pago_Pago",
+      "chkbStatus": true,
+      "id": 1
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "Pacific/Honolulu",
+      "chkbStatus": true,
+      "id": 2
+    },
+    {
+      "username": "hoya",
+      "email": "van.bt@trans-cosmos.com.vn",
+      "password": "12",
+      "passwordConfirmation": "12",
+      "timezone": "America/Hermosillo",
+      "chkbStatus": true,
+      "id": 3
+    },
+    {
+      "username": "vnbui",
+      "email": "van.bt.38@gmail.com",
+      "password": "1234",
+      "passwordConfirmation": "123",
+      "timezone": "America/Mazatlan",
+      "chkbStatus": true,
+      "id": 4
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "đây là tiêu đề"
+    },
+    {
+      "title": "tiêu đề 5 buồn ngủ quá",
+      "isLoading": false,
+      "id": 2
+    },
+    {
+      "title": "wqwq",
+      "isLoading": false,
+      "id": 3
+    },
+    {
+      "title": "test update",
+      "isLoading": false,
+      "id": 4
+    },
+    {
+      "title": "1212",
+      "isLoading": false,
+      "id": 5
+    }
+  ]
+}

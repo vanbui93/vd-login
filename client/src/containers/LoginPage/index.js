@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux';
-import { userLoginRequest } from '../../actions/authActions';
+import { userActions } from '../../actions/authActions';
 import { alertActions } from '../../actions/alertActions';
 
 class LoginPage extends Component {
@@ -129,7 +129,7 @@ const mapStateToProps = (state, Props) => {
 
 const mapDispatchToProps = (dispatch, Props) => {
   return {
-      userLoginRequest:bindActionCreators(userLoginRequest, dispatch),
+      userLoginRequest:bindActionCreators(userActions.userLoginRequest, dispatch),
       alertError:bindActionCreators(alertActions.alertError, dispatch),
     }
 }

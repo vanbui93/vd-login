@@ -2,6 +2,7 @@ import axios from 'axios';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 // import jwtDecode from 'jwt-decode';
 import { SET_CURRENT_USER } from '../constant/user';
+import * as userApis from '../apis/users';
 
 
 export function setCurrentUser(user) {
@@ -19,9 +20,20 @@ export function logoutActions() {
     }
 }
 
+
+// export const fetchListTask = () => {
+//     return dispatch => {
+//         userApis.getListUser().then(data => {
+//             console.log('data', data);
+//         }).catch(error => {
+//             console.log('error', error);
+//         })
+//     }
+// }
+
 export function userLoginRequest (userData) {
     return dispatch => {
-        return axios.get('http://localhost:3000/users', userData).then(res => {
+        axios.get('http://localhost:3330/users', userData).then(res => {
             const token = JSON.stringify(res.data[0]);
             localStorage.setItem('jwtToken', token);
             setAuthorizationToken(token); //đưa data lấy được từ server vào setAuthorizationToken để đưa vào header(network)

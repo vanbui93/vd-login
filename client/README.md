@@ -6,12 +6,6 @@
 npm i --save lodash
 ```
 
-Cài đặt material-ui
-
-```sh
-npm install @material-ui/core
-```
-
 Cài đặt **react-router-dom**
 
 ```sh
@@ -41,7 +35,7 @@ const store = createStore(
   <App/>
 </Provider>
 ```
-Cài đặt redux
+Cài đặt redux, redux-thunk
 
 ```js
 npm install redux react-redux redux-thunk
@@ -64,7 +58,7 @@ cài đặt classname để có thể kết hợp class và logic, viết nhiề
 npm install classnames --save
 ```
 
-cài đặt bcrypt để mã hóa mật khẩu
+cài đặt bcrypt so sánh mật khẩu
 ```sh
 npm i bcrypt
 ```
@@ -73,9 +67,4 @@ cài đặt jwt-decode để mã hóa code
 
 ```sh
 npm i jwt-decode --save
-```
-
-Cài đặt alert package để tự động tắt alert
-```sh
-npm i react-bs-notifier
 ```

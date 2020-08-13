@@ -14,7 +14,7 @@ class SignupPage extends Component {
     return (
       <div className="background">
         <div className="signup">
-          <SignUpForm userSignUpRequest={userSignUpRequest} alertSuccess={alertSuccess}/>
+          <SignUpForm userSignUpRequest={userSignUpRequest} alertSuccess={alertSuccess} />
         </div>
       </div>
     )

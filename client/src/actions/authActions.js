@@ -2,7 +2,7 @@ import axios from 'axios';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 // import jwtDecode from 'jwt-decode';
 import { SET_CURRENT_USER } from '../constant/user';
-import * as userApis from '../apis/users';
+// import * as userApis from '../apis/users';
 
 
 export function setCurrentUser(user) {
@@ -19,17 +19,6 @@ export function logoutActions() {
         dispatch(setCurrentUser({}))
     }
 }
-
-
-// export const fetchListTask = () => {
-//     return dispatch => {
-//         userApis.getListUser().then(data => {
-//             console.log('data', data);
-//         }).catch(error => {
-//             console.log('error', error);
-//         })
-//     }
-// }
 
 export function userLoginRequest (userData) {
     return dispatch => {

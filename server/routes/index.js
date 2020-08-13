@@ -22,12 +22,14 @@ router.post('/api/auth', function (req, res) {
       if (user) {
         //NẾU REQUEST THÀNH CÔNG TRẢ VỀ TOKEN
         // const password_digest = bcrypt.hashSync(response.rows[0].password, 10); //mã hóa password
-        const token = jwt.sign({
-          id: user.rows[0].id,
-          username: user.rows[0].username,
-        }, 'somesecretkeyforjsonwebtoken');  //B2 create a JWT somesecretkeyforjsonwebtoken => là 1 secret mà server sẽ trả về cho client
+        if (user.rows[0].id && user.rows[0].username) { //nếu tồn tại id,username
+          const token = jwt.sign({
+            id: user.rows[0].id,
+            username: user.rows[0].username,
+          }, 'somesecretkeyforjsonwebtoken');  //B2 create a JWT somesecretkeyforjsonwebtoken => là 1 secret mà server sẽ trả về cho client
 
-        res.json({ token });
+          res.json({ token });
+        }
       } else {
         // res.status(401).json({ error: 'Invalid Creadentials' })
         return console.error('Invalid Creadentials', err);
@@ -42,13 +44,13 @@ router.post('/api/auth', function (req, res) {
 router.post('/api/users/register', (req, res, next) => {
   pool.connect(function (error) {   // phải có pool.connect ở đây thì mới được
     var username = req.body.username,
-    email = req.body.email,
-    password = req.body.password;
+      email = req.body.email,
+      password = req.body.password;
     passwordConfirmation = req.body.passwordConfirmation;
     timezone = req.body.timezone;
     chkbStatus = req.body.chkbStatus;
     sql = "insert into users (username,email,password,passwordConfirmation,timezone,chkbStatus) values ($1,$2,$3,$4,$5,$6) RETURNING username,email,password,passwordConfirmation,timezone,chkbStatus";
-    pool.query(sql, [username,email,password,passwordConfirmation,timezone,chkbStatus], (error, response) => {
+    pool.query(sql, [username, email, password, passwordConfirmation, timezone, chkbStatus], (error, response) => {
       if (error) {  // nếu lỗi thì trả về error
         return console.error('error running query', error);
       } else {   // Nếu thành công trả về response

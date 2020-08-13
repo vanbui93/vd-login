@@ -9,3 +9,7 @@ const url = 'auth';
 export const getUser = (user) => {
   return axiosService.post(`${API_ENDPOINT}/${url}`, user);
 }
+
+export const register = (user) => {
+  return axiosService.post(`${API_ENDPOINT}/${url}/register`, user);
+}

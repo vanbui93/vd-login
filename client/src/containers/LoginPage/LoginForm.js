@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class LoginForm extends Component {
   }
 
   //kiểm tra nếu đã loggned rồi thì trả về trang chủ, thông báo đã có tài khoản
-  componentDidMount() {
+  componentDidUpdate() {
     if(this.props.isAuthenticated) {
       const {history} = this.props;
       this.props.alertError({
@@ -46,15 +47,9 @@ class LoginForm extends Component {
     e.preventDefault();
     this.setState({ submitted: true, isLoading: true });
     
-    const {history} = this.props;
-    
     const { user } = this.state;
     if (user.username && user.password){
-      this.props.userLoginRequest(user)
-      // .then(
-      //   () => {  history.push('/')},
-      //   () => this.setState({isLoading: false})
-      // ) 
+      this.props.userLoginRequest(user);
     }
   }
 
@@ -118,4 +113,4 @@ LoginForm.propTypes={
   alertError: PropTypes.func.isRequired,
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

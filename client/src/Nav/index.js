@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logoutActions } from './../actions/authActions'
@@ -10,10 +10,13 @@ class NavigationBar extends Component {
     logout = (e) => {
         e.preventDefault();
         this.props.logoutActions();
+
+        const { history } = this.props;
+        history.push('/login');
     }
 
     render() {
-        const { isAuthenticated } = this.props.auth;
+        const { isAuthenticated } = this.props;
 
         //userLinks cho user đã Authenticated (đã login)
         const userLinks = (
@@ -53,14 +56,14 @@ class NavigationBar extends Component {
 }
 
 NavigationBar.propTypes = {
-    auth: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
     logoutActions: PropTypes.func.isRequired,
 }
 
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        auth: state.auth,
+        isAuthenticated: state.auth.isAuthenticated,
     }
 }
 
@@ -70,4 +73,4 @@ const mapDispatchToProps = (dispatch, Props) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavigationBar))

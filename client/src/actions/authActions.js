@@ -3,6 +3,7 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 import * as Types from '../constant/user';
 import * as userApis from '../apis/auth';
+import { history } from './../helpers/history';
 
 
 export function setCurrentUser(user) {
@@ -16,7 +17,8 @@ export function logoutActions() {
     return dispatch => {
         localStorage.removeItem('jwtToken');
         setAuthorizationToken(false);
-        dispatch(setCurrentUser({}))
+        dispatch(setCurrentUser({}));
+        // history.push('/login');
     }
 }
 
@@ -32,7 +34,7 @@ export function logoutActions() {
 
 export function userLoginRequest(user) {
     return dispatch => {
-        userApis.getUser(user)  //B1
+        userApis.getUser(user) //B1
         .then(res => {
             const token = JSON.stringify(res.data.token);           //B2
             localStorage.setItem('jwtToken', token);
@@ -42,15 +44,16 @@ export function userLoginRequest(user) {
 
             // lưu ý: chỉ sử dụng giải mã jwtDecode khi backend đã mã hóa trước đó
             dispatch(setCurrentUser(jwtDecode(token))); 
-
+            
             // dispatch(setCurrentUser(token));
         });
     }
 }
 
 
-export function userSignUpRequest(userData) {
+export function userSignUpRequest(user) {
 return dispatch => {
-    return axios.post('http://localhost:3330/api/users/register', userData)
+    // userApis.register(user)
+    return axios.post('http://localhost:3330/api/users/register', user)
 }
 }

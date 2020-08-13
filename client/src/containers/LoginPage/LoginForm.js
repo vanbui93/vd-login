@@ -50,10 +50,10 @@ class LoginForm extends Component {
     
     const { user } = this.state;
     if (user.username && user.password){
-      this.props.userLoginRequest(this.state);
+      this.props.userLoginRequest(user)
       // .then(
-      //   (res) => {  history.push('/')},
-      //   (err) => this.setState({isLoading: false})
+      //   () => {  history.push('/')},
+      //   () => this.setState({isLoading: false})
       // ) 
     }
   }

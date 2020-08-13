@@ -10,6 +10,7 @@ import rootReducer from './reducers'
 import setAuthorizationToken from './utils/setAuthorizationToken';
 // import jwtDecode from 'jwt-decode';
 import { setCurrentUser } from './actions/authActions';
+import JwtDecode from 'jwt-decode';
 
 const store = createStore(
   rootReducer,
@@ -27,7 +28,7 @@ if(localStorage.jwtToken) {
   
     //nếu tồn tại user trong localStorage thì tiến hành dispatch luôn mà không cần chờ phải có ACTION
   // store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken))); //=> dùng giải mã nếu có backend đã mã hóa trước đó
-  store.dispatch(setCurrentUser(localStorage.jwtToken));
+  store.dispatch(setCurrentUser(JwtDecode(localStorage.jwtToken)));
 }
 
 ReactDOM.render(

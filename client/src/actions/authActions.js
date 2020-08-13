@@ -2,7 +2,7 @@ import axios from 'axios';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 import * as Types from '../constant/user';
-// import * as userApis from '../apis/users';
+import * as userApis from '../apis/auth';
 
 
 export function setCurrentUser(user) {
@@ -32,7 +32,7 @@ export function logoutActions() {
 
 export function userLoginRequest(user) {
     return dispatch => {
-        axios.post('http://localhost:3330/api/users',user)   //B1
+        userApis.getUser(user)  //B1
         .then(res => {
             const token = JSON.stringify(res.data.token);           //B2
             localStorage.setItem('jwtToken', token);

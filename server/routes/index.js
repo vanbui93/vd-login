@@ -38,4 +38,25 @@ router.post('/api/auth', function (req, res) {
   })
 });
 
+
+router.post('/api/users/register', (req, res, next) => {
+  pool.connect(function (error) {   // phải có pool.connect ở đây thì mới được
+    var username = req.body.username,
+    email = req.body.email,
+    password = req.body.password;
+    passwordConfirmation = req.body.passwordConfirmation;
+    timezone = req.body.timezone;
+    chkbStatus = req.body.chkbStatus;
+    sql = "insert into users (username,email,password,passwordConfirmation,timezone,chkbStatus) values ($1,$2,$3,$4,$5,$6) RETURNING username,email,password,passwordConfirmation,timezone,chkbStatus";
+    pool.query(sql, [username,email,password,passwordConfirmation,timezone,chkbStatus], (error, response) => {
+      if (error) {  // nếu lỗi thì trả về error
+        return console.error('error running query', error);
+      } else {   // Nếu thành công trả về response
+        // console.log(response.rows[0]);
+        res.send(response.rows[0]);
+      }
+    })
+  })
+});
+
 module.exports = router;

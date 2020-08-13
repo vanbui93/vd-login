@@ -47,3 +47,10 @@ export function userLoginRequest(user) {
         });
     }
 }
+
+
+export function userSignUpRequest(userData) {
+return dispatch => {
+    return axios.post('http://localhost:3330/api/users/register', userData)
+}
+}

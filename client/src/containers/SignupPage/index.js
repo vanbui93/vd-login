@@ -5,7 +5,7 @@ import SignUpForm from './SignUpForm';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { bindActionCreators } from 'redux';
-import { userSignUpRequest } from './../../actions/signupActions';
+import * as userActions from './../../actions/authActions';
 import { alertActions } from './../../actions/alertActions';
 
 class SignupPage extends Component {
@@ -28,7 +28,7 @@ SignupPage.propTypes = {
 
 const mapDispatchToProps = (dispatch, Props) => {
   return {
-    userSignUpRequest: bindActionCreators(userSignUpRequest, dispatch),
+    userSignUpRequest: bindActionCreators(userActions.userSignUpRequest, dispatch),
     alertSuccess: bindActionCreators(alertActions.alertSuccess, dispatch),
   }
 }

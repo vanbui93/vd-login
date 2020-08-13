@@ -46,7 +46,7 @@ class LoginForm extends Component {
     e.preventDefault();
     this.setState({ submitted: true, isLoading: true });
     
-    // const {history} = this.props;
+    const {history} = this.props;
     
     const { user } = this.state;
     if (user.username && user.password){
